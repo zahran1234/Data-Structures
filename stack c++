@@ -1,0 +1,42 @@
+// by:mohamed zharan
+#include <iostream>
+
+using namespace std;
+class Stack
+{
+    private:
+    int arr[100];
+    int top=0;
+    public:
+        void appand(int elemenet)
+        {
+            arr[top]=elemenet;
+            top++;
+        }
+    void pop()
+    {
+        top--;
+    }
+    void show_data()
+    {
+        for(int i=top-1;i>=0;i--)
+        {
+            cout<<arr[i]<< "  ";
+        }
+    }
+
+};
+
+int main()
+{
+Stack s;
+s.appand(1);
+s.appand(2);
+s.appand(3);
+s.appand(4);
+s.pop();
+s.pop();
+s.show_data();
+
+return 0;
+}
