@@ -1,0 +1,147 @@
+#include <iostream>
+
+#include <iostream>
+
+using namespace std;
+class binary_tree{
+    private:
+struct node{
+int item;
+node* left;
+node* right;
+int level;
+};
+node* root=NULL;
+int h=1;
+
+    public:
+int counter=0;
+
+    void append(int e)
+    {
+        counter++;
+        node* new_node=new node;
+        new_node->item=e;
+        new_node->left=new_node->right=NULL;
+        node* current=root;
+        if(root==NULL)
+        {
+            new_node->level=1;
+          root=new_node;   return ;
+
+        }
+
+        while(true)
+        {
+            if (e>current->item)
+            {
+                if(current->right==NULL)
+                   {
+        current->right=new_node;
+        new_node->level=current->level+1;
+        if (h<new_node->level) {h=new_node->level; }break;
+
+                   }
+                else{current=current->right;}
+            }
+            else
+            {
+                if(current->left==NULL)
+                    {current->left=new_node;
+                    new_node->level=current->level+1;
+        if (h<new_node->level) {h=new_node->level; } break;}
+
+                else{current=current->left;}
+            }
+        }
+
+
+    }
+    int max_value()
+    {
+        node* current=root;
+
+        while (true)
+        {
+            if(current->right==NULL)
+                return current->item;
+            current=current->right;
+        }
+    }
+    int min_value()
+    {
+    node* current=root;
+
+        while (true)
+        {
+            if(current->left==NULL)
+                return current->item;
+            current=current->left;
+        }
+    }
+    int height()
+    {
+        return h;
+
+    }
+
+void show_levels()
+{
+    node* current=root;
+    int i=1;
+    int font=0;
+    int top=1;
+    node* arr[counter];
+    arr[0]=root;
+    cout<<arr[0]->item<<"  ";
+    while (true)
+    {
+        if (arr[font]->left!=NULL)
+    {
+    arr[top]=arr[font]->left;
+    if (arr[top-1]->level!=arr[top]->level)cout<<endl;
+    cout<<arr[top]->item<<"  ";
+    top++; i++;
+    }
+    if (arr[font]->right!=NULL)
+   {
+    arr[top]=arr[font]->right;
+    if (arr[top-1]->level!=arr[top]->level)cout<<endl;
+    cout<<arr[top]->item<<"  ";
+    top++;
+    i++;
+
+   }
+   font++;
+   if(i==counter)
+    break;
+    }
+
+}
+void show_preorder(node*current)
+{
+    if (current==NULL){return;
+    cout<<current->item<<endl;
+    show_preorder(current->left);
+    show_preorder(current->right);
+
+}
+};
+
+int main()
+{
+ binary_tree tree1;
+ tree1.append(10);
+ tree1.append(5);
+ tree1.append(14);
+ tree1.append(1);
+ tree1.append(7);
+  tree1.append(6);
+
+  tree1.append(12);
+  tree1.append(16);
+
+
+       tree1.show_levels();
+       return 0;
+}
