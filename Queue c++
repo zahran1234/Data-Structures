@@ -1,0 +1,51 @@
+// by:mohamed zharan
+#include <iostream>
+
+using namespace std;
+class Queue{
+    private:
+int arr[10];
+int font =0;
+int top=-1;
+int n_e=0;
+public:
+void append(int element)
+{
+    if (n_e==10){cout<<"queue is full"<<endl; return;}
+    top++;
+    arr[top%10]=element;
+    n_e ++;
+
+}
+void pop()
+{
+    if(n_e==0){return ; cout<<"queue is empty"<<endl;}
+    font =(font+1)%10;
+    n_e--;
+
+
+}
+void show_data()
+{
+    int current=font;
+
+    for(int i=0;i<n_e;i++)
+    {
+        cout<<arr[current%10]<<"  "<<endl;
+        current++;
+    }
+}
+
+};
+
+int main()
+{
+
+Queue q;
+q.append(0);
+q.append(1);
+q.append(2);
+q.pop();
+q.show_data();
+return 0;
+}
