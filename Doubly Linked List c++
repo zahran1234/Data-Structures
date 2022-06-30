@@ -1,0 +1,141 @@
+
+#include <iostream>
+
+using namespace std;
+class linked_list{
+    private:
+struct node
+{
+    int item ;
+    node* next;
+    node* Back;
+
+};
+
+
+    public:
+        int counter=0;
+        node* head=NULL;
+        node* current=head;
+    void appent(int e)
+    {
+        counter++;
+        node* new_node=new node;
+        new_node->item=e; new_node->next=NULL;
+        if(head==NULL){head=new_node;head->Back=NULL;current=head;}
+        else{ new_node->Back= current;current->next=new_node;
+        current=current->next;
+        }
+
+    }
+    void show_data()
+    {
+        node* show =head;
+        cout<< "the data are     : ";
+        for(int i=0;i<counter;i++)
+        {
+            cout<<show->item<<"  ";
+            show=show->next;
+        }
+        cout<<endl;
+
+    }
+    void insert_node(int index,int e)
+    {
+         counter++;
+        node* new_node=new node;
+        new_node->item=e;
+        new_node->next=NULL;
+        node* iter=head;
+        node* Back=new node;
+        if(index==0)
+        {
+            new_node->next=head;
+            head=new_node;
+
+            return ;
+        }
+
+               int i=0;
+                while(i<index)
+        {
+
+            if (i==index-1)
+            {
+                 Back=iter;
+            }
+          iter=iter->next;
+          i++;
+        }
+
+        new_node->next=iter;
+        Back->next=new_node;
+
+
+    }
+
+
+    void delete_node(int index)
+    {
+        counter--;
+        node* iter=head;
+        node* Back=new node;
+        if(index==0)
+        {
+        head=head->next;
+        delete iter;
+        return;
+        }
+
+               int i=0;
+                while(i<index)
+        {
+
+            if (i==index-1)
+            {
+                 Back=iter;
+            }
+          iter=iter->next;
+          i++;
+        }
+
+        Back->next=iter->next;
+
+
+    }
+    void Reverse()
+    {
+        cout<<"the reverse order: ";
+        int arr[counter];
+
+        for(int i=0;i<counter;i++)
+        {
+           cout<<current->item<<"  ";
+           current=current->Back;
+        }
+
+    }
+    void print_counter()
+    {
+        cout<<"counter is: "<<counter<<endl;
+    }
+
+};
+
+int main()
+{
+    linked_list l1;
+    l1.appent(1);
+    l1.appent(2);
+    l1.appent(3);
+     l1.appent(1);
+    l1.appent(2);
+    l1.appent(3);
+
+   l1.show_data();
+   l1.Reverse();
+
+
+
+return 0;
+}
